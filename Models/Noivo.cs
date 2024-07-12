@@ -1,7 +1,8 @@
 using System;
-namespace Models.Noivo
+
+namespace Models.Pessoa.Noivo
 {
-    public class Noivo
+    public class Noivo : Pessoa
     {
 
     }
