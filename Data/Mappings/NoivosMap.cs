@@ -15,13 +15,13 @@ namespace Maps.Data.Mappings
             builder.Property(c => c.Nome)
                 .IsRequired()
                 .HasColumnName("Nome Noivo(a)")
-                .HasMaxLength(100)
-                .HasColumnType("NVARCHAR(100)");
+                .HasMaxLength(80)
+                .HasColumnType("NVARCHAR(80)");
             builder.Property(c => c.Telefone)
                 .IsRequired()
                 .HasColumnName("Telefone Noivo(a)")
-                .HasMaxLength(25)
-                .HasColumnType("NVARCHAR(25)");
+                .HasMaxLength(30)
+                .HasColumnType("NVARCHAR(30)");
             builder.Property(c => c.Email)
                 .IsRequired()
                 .HasColumnName("Email Noivo(a)")
