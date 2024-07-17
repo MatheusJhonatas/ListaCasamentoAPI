@@ -1,6 +1,12 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using Data.Mappings;
 
-app.MapGet("/", () => "Hello World!");
+var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddControllers();
+
+builder.Services.AddDbContext<ListaCasamentoDataContext>();
+var app = builder.Build();
+app.MapControllers();
 
 app.Run();
