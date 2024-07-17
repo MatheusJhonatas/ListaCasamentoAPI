@@ -6,7 +6,7 @@ CRUD criado para o cadastro e gerenciamento de convidados, noivos e padrinhos de
 - Get
   - Retorna o cadastro dos noivos.
 - Post
-  - Cadastra um noivo(a).
+  - [x] Cadastra um noivo(a).
 - Update
   - Atualiza o cadastro de um noivo(a).
 - Delete
