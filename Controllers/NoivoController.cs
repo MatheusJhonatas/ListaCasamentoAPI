@@ -17,13 +17,25 @@ namespace Controllers
         {
             var noivos = await context.Noivos.ToListAsync();
             return Ok(noivos);
+
         }
 
 
-        [HttpGet("v1/noivos/{int:id}")]
-        public async Task<IActionResult> GetByIdAsync()
+        [HttpGet("v1/noivos/{id:Guid}")]
+        public async Task<IActionResult> GetByIdAsync(
+            [FromRoute] Guid id,
+            [FromServices] ListaCasamentoDataContext context
+        )
         {
-            return Ok();
+            try
+            {
+                var noivos = await context.Noivos.FirstOrDefaultAsync(c => c.Id == id);
+                return Ok(noivos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Falha Interna no Servidor");
+            }
         }
         [HttpPost("v1/noivos")]
         public async Task<IActionResult> PostAsync(
