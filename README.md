@@ -4,7 +4,7 @@ CRUD criado para o cadastro e gerenciamento de convidados, noivos e padrinhos de
 
 ## Noivos
 - Get
-  - Retorna o cadastro dos noivos.
+  -  <span style="color: green;">☑</span> Retorna o cadastro dos noivos.
 - Post
    - <span style="color: green;">☑</span> Cadastra um noivo(a).
 - Update
