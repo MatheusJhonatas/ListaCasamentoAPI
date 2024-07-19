@@ -2,6 +2,7 @@ using System.Reflection.Metadata.Ecma335;
 using Data.Mappings;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Models.Pessoa.Noivo;
 
 namespace Controllers
@@ -9,6 +10,21 @@ namespace Controllers
     [ApiController]
     public class NoivoController : ControllerBase
     {
+        [HttpGet("v1/noivos")]
+        public async Task<IActionResult> GetAsync(
+            [FromServices] ListaCasamentoDataContext context
+        )
+        {
+            var noivos = await context.Noivos.ToListAsync();
+            return Ok(noivos);
+        }
+
+
+        [HttpGet("v1/noivos/{int:id}")]
+        public async Task<IActionResult> GetByIdAsync()
+        {
+            return Ok();
+        }
         [HttpPost("v1/noivos")]
         public async Task<IActionResult> PostAsync(
             [FromBody] Noivo noivo,
@@ -29,5 +45,9 @@ namespace Controllers
 
         }
 
+
+
     }
 }
+
+
