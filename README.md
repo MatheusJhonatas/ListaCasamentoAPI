@@ -10,5 +10,5 @@ CRUD criado para o cadastro e gerenciamento de convidados, noivos e padrinhos de
 - Update
   - Atualiza o cadastro de um noivo(a).
 - Delete
-  - Deleta um noivo(a).
+  - <span style="color: green;">☑</span> Deleta um noivo(a).
  
