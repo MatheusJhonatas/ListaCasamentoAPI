@@ -69,6 +69,37 @@ namespace Controllers
             return Ok($"Usuário {deletarNoivo.Nome} foi excluido com sucesso");
         }
 
+
+        [HttpPut("v1/noivos/{id:Guid}")]
+        public async Task<IActionResult> PutAsync(
+            [FromRoute] Guid id,
+            [FromBody] Noivo noivo,
+            [FromServices] ListaCasamentoDataContext context
+        )
+        {
+            try
+            {
+                var noivoExistente = await context.Noivos.FirstOrDefaultAsync(c => c.Id == id);
+                if (noivoExistente == null)
+                {
+                    return NotFound();
+                }
+
+                noivoExistente.Nome = noivo.Nome;
+
+
+                context.Update(noivoExistente);
+                await context.SaveChangesAsync();
+
+                return Ok(noivoExistente);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Falha Interna no Servidor");
+            }
+        }
+
+
     }
 }
 
