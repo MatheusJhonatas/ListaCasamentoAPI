@@ -57,7 +57,17 @@ namespace Controllers
 
         }
 
-
+        [HttpDelete("v1/noivos/{id:Guid}")]
+        public async Task<IActionResult> DeleteAsync(
+            [FromRoute] Guid id,
+            [FromServices] ListaCasamentoDataContext context
+        )
+        {
+            var deletarNoivo = context.Noivos.FirstOrDefault(c => c.Id == id);
+            context.Remove(deletarNoivo);
+            await context.SaveChangesAsync();
+            return Ok($"Usuário {deletarNoivo.Nome} foi excluido com sucesso");
+        }
 
     }
 }
