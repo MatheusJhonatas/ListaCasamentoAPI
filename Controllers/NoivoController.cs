@@ -39,12 +39,22 @@ namespace Controllers
         }
         [HttpPost("v1/noivos")]
         public async Task<IActionResult> PostAsync(
-            [FromBody] Noivo noivo,
+            [FromBody] EditorNoivoViewModel model,
             [FromServices] ListaCasamentoDataContext context
         )
         {
             try
             {
+                var noivo = new Noivo
+                {
+                    Nome = model.Nome,
+                    Aniversario = model.Aniversario,
+                    Sexo = model.Sexo,
+                    Familia = model.Familia,
+                    Telefone = model.Telefone,
+                    Email = model.Email.ToLower(),
+                    Id = Guid.NewGuid()
+                };
                 await context.Noivos.AddAsync(noivo);
                 await context.SaveChangesAsync();
 
@@ -73,25 +83,30 @@ namespace Controllers
         [HttpPut("v1/noivos/{id:Guid}")]
         public async Task<IActionResult> PutAsync(
             [FromRoute] Guid id,
-            [FromBody] Noivo noivo,
+            [FromBody] EditorNoivoViewModel model,
             [FromServices] ListaCasamentoDataContext context
         )
         {
             try
             {
-                var noivoExistente = await context.Noivos.FirstOrDefaultAsync(c => c.Id == id);
-                if (noivoExistente == null)
+                var atualizaNoivo = await context.Noivos.FirstOrDefaultAsync(c => c.Id == id);
+                if (atualizaNoivo == null)
                 {
                     return NotFound();
                 }
 
-                noivoExistente.Nome = noivo.Nome;
+                atualizaNoivo.Nome = model.Nome;
+                atualizaNoivo.Aniversario = model.Aniversario;
+                atualizaNoivo.Sexo = model.Sexo;
+                atualizaNoivo.Familia = model.Familia;
+                atualizaNoivo.Telefone = model.Telefone;
+                atualizaNoivo.Email = model.Email.ToLower();
 
 
-                context.Update(noivoExistente);
+                context.Update(atualizaNoivo);
                 await context.SaveChangesAsync();
 
-                return Ok(noivoExistente);
+                return Ok(atualizaNoivo);
             }
             catch (Exception ex)
             {
