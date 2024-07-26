@@ -1,7 +1,9 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
-public class EditorNoivoViewModel
+public class UpdateNoivoViewModel
 {
+
     public string Nome { get; set; }
     public DateTime Aniversario { get; set; }
     public string Sexo { get; set; }
