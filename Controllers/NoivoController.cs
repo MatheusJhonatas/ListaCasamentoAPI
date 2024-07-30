@@ -1,5 +1,6 @@
 using System.Reflection.Metadata.Ecma335;
 using Data.Mappings;
+using ListaCasamento.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -15,9 +16,16 @@ namespace Controllers
             [FromServices] ListaCasamentoDataContext context
         )
         {
-            var noivos = await context.Noivos.ToListAsync();
-            return Ok(noivos);
+            try
+            {
+                var noivos = await context.Noivos.ToListAsync();
+                return Ok(new ResultViewModel<List<Noivo>>(noivos));
 
+            }
+            catch
+            {
+                return StatusCode(500, new ResultViewModel<List<Noivo>>("0XCD - Falha Interna no Servidor"));
+            }
         }
 
 
