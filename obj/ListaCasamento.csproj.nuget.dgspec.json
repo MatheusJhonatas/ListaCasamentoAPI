@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Dev\\ListaCasamentoApi\\ListaCasamento\\ListaCasamento.csproj": {}
+    "C:\\Dev\\ListaCasamentoApi\\ListaCasamento\\ListaCasamento.csproj": {}
   },
   "projects": {
-    "c:\\Dev\\ListaCasamentoApi\\ListaCasamento\\ListaCasamento.csproj": {
+    "C:\\Dev\\ListaCasamentoApi\\ListaCasamento\\ListaCasamento.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Dev\\ListaCasamentoApi\\ListaCasamento\\ListaCasamento.csproj",
+        "projectUniqueName": "C:\\Dev\\ListaCasamentoApi\\ListaCasamento\\ListaCasamento.csproj",
         "projectName": "ListaCasamento",
-        "projectPath": "c:\\Dev\\ListaCasamentoApi\\ListaCasamento\\ListaCasamento.csproj",
+        "projectPath": "C:\\Dev\\ListaCasamentoApi\\ListaCasamento\\ListaCasamento.csproj",
         "packagesPath": "C:\\Users\\Matheus\\.nuget\\packages\\",
-        "outputPath": "c:\\Dev\\ListaCasamentoApi\\ListaCasamento\\obj\\",
+        "outputPath": "C:\\Dev\\ListaCasamentoApi\\ListaCasamento\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Matheus\\AppData\\Roaming\\NuGet\\NuGet.Config",
