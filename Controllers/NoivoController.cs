@@ -20,7 +20,6 @@ namespace Controllers
             {
                 var noivos = await context.Noivos.ToListAsync();
                 return Ok(new ResultViewModel<List<Noivo>>(noivos));
-
             }
             catch
             {
@@ -38,11 +37,16 @@ namespace Controllers
             try
             {
                 var noivos = await context.Noivos.FirstOrDefaultAsync(c => c.Id == id);
-                return Ok(noivos);
+                if (noivos == null)
+                {
+                    return NotFound(new ResultViewModel<Noivo>("Conteúdo não encontrado."));
+                }
+                return Ok(new ResultViewModel<Noivo>(noivos));
+
             }
-            catch (Exception ex)
+            catch
             {
-                return StatusCode(500, "Falha Interna no Servidor");
+                return StatusCode(500, new ResultViewModel<Noivo>("Falha Interna no Servidor"));
             }
         }
         [HttpPost("v1/noivos")]
