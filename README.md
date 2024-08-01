@@ -1,5 +1,5 @@
-# Lista de Casamento
-
+# Lista de Casamento  
+![Em Construção](https://img.shields.io/badge/status-em%20construção-yellow)  
 CRUD criado para o cadastro e gerenciamento de convidados, noivos e padrinhos de uma lista de casamento, utilizando requisições HTTP.
 
 ## Noivos
