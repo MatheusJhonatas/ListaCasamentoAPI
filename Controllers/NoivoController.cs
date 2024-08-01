@@ -51,7 +51,7 @@ namespace Controllers
         }
         [HttpPost("v1/noivos")]
         public async Task<IActionResult> PostAsync(
-            [FromBody] CreateNoivoViewModel model,
+            [FromBody] EditorNoivoViewModel model,
             [FromServices] ListaCasamentoDataContext context
         )
         {
@@ -70,7 +70,7 @@ namespace Controllers
                 await context.Noivos.AddAsync(noivo);
                 await context.SaveChangesAsync();
 
-                return Created($"v1/noivos{noivo.Id}", noivo);
+                return Created($"v1/noivos{noivo.Id}", new ResultViewModel<Noivo>(noivo));
             }
             catch (Exception e)
             {
@@ -85,17 +85,28 @@ namespace Controllers
             [FromServices] ListaCasamentoDataContext context
         )
         {
-            var deletarNoivo = context.Noivos.FirstOrDefault(c => c.Id == id);
-            context.Remove(deletarNoivo);
-            await context.SaveChangesAsync();
-            return Ok($"Usuário {deletarNoivo.Nome} foi excluido com sucesso");
+            try
+            {
+                var deletarNoivo = context.Noivos.FirstOrDefault(c => c.Id == id);
+                if (deletarNoivo == null)
+                {
+                    return NotFound(new ResultViewModel<Noivo>("ID do noivo não encontrado"));
+                }
+                context.Noivos.Remove(deletarNoivo);
+                await context.SaveChangesAsync();
+                return Ok(new ResultViewModel<Noivo>(deletarNoivo + $"Usuário {deletarNoivo.Nome} foi excluido com sucesso"));
+            }
+            catch
+            {
+                return StatusCode(500, new ResultViewModel<Noivo>("Falha interna no servidor"));
+            }
         }
 
 
         [HttpPut("v1/noivos/{id:Guid}")]
         public async Task<IActionResult> PutAsync(
             [FromRoute] Guid id,
-            [FromBody] UpdateNoivoViewModel model,
+            [FromBody] EditorNoivoViewModel model,
             [FromServices] ListaCasamentoDataContext context
         )
         {
@@ -118,11 +129,11 @@ namespace Controllers
                 context.Update(atualizaNoivo);
                 await context.SaveChangesAsync();
 
-                return Ok(atualizaNoivo);
+                return Ok(new ResultViewModel<Noivo>(atualizaNoivo));
             }
-            catch (Exception ex)
+            catch
             {
-                return StatusCode(500, "Falha Interna no Servidor");
+                return StatusCode(500, new ResultViewModel<Noivo>("Falha Interna no Servidor"));
             }
         }
 
