@@ -11,7 +11,7 @@ namespace Data.Mappings
     {
         public DbSet<Convidado> Convidados { get; set; }
         public DbSet<Noivo> Noivos { get; set; }
-        public DbSet<Padrinho> Padrinho { get; set; }
+        public DbSet<Padrinho> Padrinhos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

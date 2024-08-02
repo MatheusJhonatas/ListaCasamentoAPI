@@ -39,14 +39,14 @@ namespace Controllers
                 var noivos = await context.Noivos.FirstOrDefaultAsync(c => c.Id == id);
                 if (noivos == null)
                 {
-                    return NotFound(new ResultViewModel<Noivo>("Conteúdo não encontrado."));
+                    return NotFound(new ResultViewModel<Noivo>("1XCD - Conteúdo não encontrado."));
                 }
                 return Ok(new ResultViewModel<Noivo>(noivos));
 
             }
             catch
             {
-                return StatusCode(500, new ResultViewModel<Noivo>("Falha Interna no Servidor"));
+                return StatusCode(500, new ResultViewModel<Noivo>("2XCD -Falha Interna no Servidor"));
             }
         }
         [HttpPost("v1/noivos")]
@@ -74,7 +74,7 @@ namespace Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500, "Não foi possível adicionar um noivo(a)");
+                return StatusCode(500, "3XCD -Não foi possível adicionar um noivo(a)");
             }
 
         }
@@ -90,7 +90,7 @@ namespace Controllers
                 var deletarNoivo = context.Noivos.FirstOrDefault(c => c.Id == id);
                 if (deletarNoivo == null)
                 {
-                    return NotFound(new ResultViewModel<Noivo>("ID do noivo não encontrado"));
+                    return NotFound(new ResultViewModel<Noivo>("4XCD - ID do noivo não encontrado"));
                 }
                 context.Noivos.Remove(deletarNoivo);
                 await context.SaveChangesAsync();
@@ -98,7 +98,7 @@ namespace Controllers
             }
             catch
             {
-                return StatusCode(500, new ResultViewModel<Noivo>("Falha interna no servidor"));
+                return StatusCode(500, new ResultViewModel<Noivo>("5XCD - Falha interna no servidor"));
             }
         }
 
@@ -133,7 +133,7 @@ namespace Controllers
             }
             catch
             {
-                return StatusCode(500, new ResultViewModel<Noivo>("Falha Interna no Servidor"));
+                return StatusCode(500, new ResultViewModel<Noivo>("6XCD - Falha Interna no Servidor"));
             }
         }
 
