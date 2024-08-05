@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-public class EditorNoivoViewModel
+public class EditorPessoaViewModel
 {
     [Required(ErrorMessage = "Nome é obrigatório.")]
     [StringLength(45, MinimumLength = 3, ErrorMessage = "Este campo deve conter entre 3 e 45 caracteres.")]
