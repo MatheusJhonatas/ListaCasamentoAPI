@@ -51,7 +51,7 @@ namespace Controllers
         }
         [HttpPost("v1/noivos")]
         public async Task<IActionResult> PostAsync(
-            [FromBody] EditorNoivoViewModel model,
+            [FromBody] EditorPessoaViewModel model,
             [FromServices] ListaCasamentoDataContext context
         )
         {
@@ -106,7 +106,7 @@ namespace Controllers
         [HttpPut("v1/noivos/{id:Guid}")]
         public async Task<IActionResult> PutAsync(
             [FromRoute] Guid id,
-            [FromBody] EditorNoivoViewModel model,
+            [FromBody] EditorPessoaViewModel model,
             [FromServices] ListaCasamentoDataContext context
         )
         {

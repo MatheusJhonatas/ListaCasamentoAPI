@@ -32,7 +32,7 @@ namespace Controllers
             }
         }
 
-        [HttpGet("v1/noivos/{id:Guid}")]
+        [HttpGet("v1/padrinhos/{id:Guid}")]
         public async Task<IActionResult> GetByIdAsync(
             [FromRoute] Guid id,
             [FromServices] ListaCasamentoDataContext context
@@ -50,6 +50,33 @@ namespace Controllers
             catch
             {
                 return StatusCode(500, new ResultViewModel<Noivo>("9XCD -Falha Interna no Servidor"));
+            }
+        }
+        [HttpPost("v1/padrinhos")]
+        public async Task<IActionResult> PostAsync(
+            [FromBody] EditorPessoaViewModel model,
+            [FromServices] ListaCasamentoDataContext context
+        )
+        {
+            try
+            {
+                var padrinho = new Padrinho()
+                {
+                    Nome = model.Nome,
+                    Aniversario = model.Aniversario,
+                    Sexo = model.Sexo,
+                    Familia = model.Familia,
+                    Telefone = model.Telefone,
+                    Email = model.Email.ToLower(),
+                    Id = Guid.NewGuid()
+                };
+                await context.Padrinhos.AddAsync(padrinho);
+                await context.SaveChangesAsync();
+                return Created($"v1/noivos{padrinho.Id}", new ResultViewModel<Padrinho>(padrinho));
+            }
+            catch
+            {
+                return StatusCode(500, "10XCD -Não foi possível adicionar um padrinho.");
             }
         }
 
