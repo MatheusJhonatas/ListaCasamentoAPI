@@ -13,7 +13,7 @@ public class EditorPessoaViewModel
     [Required(ErrorMessage = "Familia é obrigatório.")]
     public string Familia { get; set; }
     [Required(ErrorMessage = "Telefone é obrigatório.")]
-    [StringLength(11)]
+    [StringLength(45,MinimumLength=11,ErrorMessage="Informar o telefone no seguinte formato: 11.99999-0000")]
     public string Telefone { get; set; }
     [Required(ErrorMessage = "Email é obrigatório.")]
     [StringLength(55, MinimumLength = 10, ErrorMessage = "Este campo precisa ter entre 10 e 55 caracteres!")]
