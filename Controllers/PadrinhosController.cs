@@ -72,11 +72,40 @@ namespace Controllers
                 };
                 await context.Padrinhos.AddAsync(padrinho);
                 await context.SaveChangesAsync();
-                return Created($"v1/noivos{padrinho.Id}", new ResultViewModel<Padrinho>(padrinho));
+                return Created($"v1/padrinhos{padrinho.Id}", new ResultViewModel<Padrinho>(padrinho));
             }
             catch
             {
                 return StatusCode(500, "10XCD -Não foi possível adicionar um padrinho.");
+            }
+        }
+        [HttpPut("v1/padrinhos/{id:Guid}")]
+        public async Task<IActionResult> PutAsync
+        (
+            [FromRoute] Guid id,
+            [FromServices] ListaCasamentoDataContext context,
+            [FromBody] EditorPessoaViewModel model
+        )
+        {
+            try
+            {
+                var atualizaPadrinho = await context.Padrinhos.FirstOrDefaultAsync(c => c.Id == id);
+                if (atualizaPadrinho == null)
+                    return NotFound();
+                atualizaPadrinho.Aniversario = model.Aniversario;
+                atualizaPadrinho.Telefone = model.Telefone;
+                atualizaPadrinho.Nome = model.Nome;
+                atualizaPadrinho.Email = model.Email.ToLower();
+                atualizaPadrinho.Familia = model.Familia;
+                atualizaPadrinho.Sexo = model.Sexo;
+
+                context.Update(atualizaPadrinho);
+                await context.SaveChangesAsync();
+                return Ok(new ResultViewModel<Padrinho>(atualizaPadrinho));
+            }
+            catch
+            {
+                return StatusCode(500, "11XCD -Não foi possível adicionar um padrinho.");
             }
         }
 
