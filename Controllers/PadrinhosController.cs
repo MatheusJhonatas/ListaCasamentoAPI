@@ -108,7 +108,11 @@ namespace Controllers
                 return StatusCode(500, "11XCD -Não foi possível adicionar um padrinho.");
             }
         }
-
+        [HttpDelete("v1/padrinhos/{id:Guid}")]
+        public async Task<IActionResult> DeleteAsync()
+        {
+            return Ok();
+        }
 
     }
 }
