@@ -105,13 +105,29 @@ namespace Controllers
             }
             catch
             {
-                return StatusCode(500, "11XCD -Não foi possível adicionar um padrinho.");
+                return StatusCode(500, new ResultViewModel<Padrinho>("11XCD -Não foi possível adicionar um padrinho."));
             }
         }
         [HttpDelete("v1/padrinhos/{id:Guid}")]
-        public async Task<IActionResult> DeleteAsync()
+        public async Task<IActionResult> DeleteAsync(
+            [FromRoute] Guid id,
+            [FromServices] ListaCasamentoDataContext context
+        )
         {
-            return Ok();
+            try
+            {
+                var deletaPadrinho = context.Padrinhos.FirstOrDefault(c => c.Id == id);
+                if (deletaPadrinho == null)
+                    return NotFound("12XCD - ID do padrinho não encontrado.");
+                context.Remove(deletaPadrinho);
+                await context.SaveChangesAsync();
+                return Ok($"Usuário {deletaPadrinho.Nome} foi excluido com sucesso");
+
+            }
+            catch
+            {
+                return StatusCode(500, new ResultViewModel<Padrinho>("13XCD - Não foi possível deletar um padrinho."));
+            }
         }
 
     }
