@@ -15,10 +15,10 @@ CRUD criado para o cadastro e gerenciamento de convidados, noivos e padrinhos de
 - Get  
 <span style="color: green;">☑</span> Retorna o cadastro dos padrinhos/madrinhas.
 - Post  
-  - Cadastra um padrinho/madrinha.
+  <span style="color: green;">☑</span> Cadastra um padrinho/madrinha.
 - Update  
-  - Atualiza o cadastro de um padrinho/madrinha.
+  <span style="color: green;">☑</span> Atualiza o cadastro de um padrinho/madrinha.
 - Delete  
-  - Deleta um padrinho/madrinha.
+ <span style="color: green;">☑</span> Deleta um padrinho/madrinha.
   
  
