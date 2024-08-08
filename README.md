@@ -20,5 +20,17 @@ CRUD criado para o cadastro e gerenciamento de convidados, noivos e padrinhos de
   <span style="color: green;">☑</span> Atualiza o cadastro de um padrinho/madrinha.
 - Delete  
  <span style="color: green;">☑</span> Deleta um padrinho/madrinha.
+## Convidados  
+- Get  
+<span style="color: green;">☑</span> Retorna o cadastro dos convidados.
+- Post  
+  Cadastra um convidado.
+- Update  
+  Atualiza o cadastro de um convidado.
+- Delete  
+ Deleta um convidado.
+## 🛠️ Construído com  
+Tecnologia: .NET Core 8.0.302  
+Entity FrameWorkCore - ORM utilizado para criação de relação entre o modelo físico e o modelo lógico da aplicação.
   
  
