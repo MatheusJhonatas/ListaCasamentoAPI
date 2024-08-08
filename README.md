@@ -30,7 +30,7 @@ CRUD criado para o cadastro e gerenciamento de convidados, noivos e padrinhos de
 - Delete  
  Deleta um convidado.
 ## 🛠️ Construído com  
-Tecnologia: .NET Core 8.0.302  
-Entity FrameWorkCore - ORM utilizado para criação de relação entre o modelo físico e o modelo lógico da aplicação.
+🧩 Tecnologia: .NET Core  8.0.302  
+📦 Entity FrameWorkCore  - ORM utilizado para criação de relação entre o modelo físico e o modelo lógico da aplicação.
   
  
