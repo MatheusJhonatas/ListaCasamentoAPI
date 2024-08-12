@@ -26,7 +26,7 @@ namespace Controllers
             }
         }
         [HttpGet("v1/convidados/{id:Guid}")]
-        public async Task<IActionResult> GetByAsync(
+        public async Task<IActionResult> GetByIdAsync(
             [FromRoute] Guid id,
             [FromServices] ListaCasamentoDataContext context
         )
@@ -47,7 +47,7 @@ namespace Controllers
             }
         }
         [HttpPost("v1/convidados")]
-        public async Task<IActionResult> PutAsync(
+        public async Task<IActionResult> PostAsync(
             [FromBody] EditorPessoaViewModel model,
             [FromServices] ListaCasamentoDataContext context
         )
