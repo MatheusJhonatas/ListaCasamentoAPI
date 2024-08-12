@@ -26,7 +26,7 @@ namespace Controllers
             }
         }
         [HttpGet("v1/convidados/{id:Guid}")]
-        public async Task<IActionResult> GetByAsync(
+        public async Task<IActionResult> GetByIdAsync(
             [FromRoute] Guid id,
             [FromServices] ListaCasamentoDataContext context
         )
@@ -47,7 +47,7 @@ namespace Controllers
             }
         }
         [HttpPost("v1/convidados")]
-        public async Task<IActionResult> PutAsync(
+        public async Task<IActionResult> PostAsync(
             [FromBody] EditorPessoaViewModel model,
             [FromServices] ListaCasamentoDataContext context
         )
@@ -56,6 +56,7 @@ namespace Controllers
             {
                 var convidado = new Convidado
                 {
+                    Confirmacao = model.Confirmacao,
                     Nome = model.Nome,
                     Aniversario = model.Aniversario,
                     Sexo = model.Sexo,
@@ -85,15 +86,15 @@ namespace Controllers
                 var deletarConvidado = context.Convidados.FirstOrDefault(c => c.Id == id);
                 if (deletarConvidado == null)
                 {
-                    return NotFound(new ResultViewModel<Convidado>("4XCD - ID do convidado não encontrado"));
+                    return NotFound(new ResultViewModel<Convidado>("17XCD - ID do convidado não encontrado"));
                 }
                 context.Convidados.Remove(deletarConvidado);
                 await context.SaveChangesAsync();
-                return Ok(new ResultViewModel<Convidado>(deletarConvidado + $"Usuário {deletarConvidado.Nome} foi excluido com sucesso"));
+                return Ok($" Usuário {deletarConvidado.Nome} foi excluido com sucesso");
             }
             catch
             {
-                return StatusCode(500, new ResultViewModel<Convidado>("17XCD - Falha interna no servidor"));
+                return StatusCode(500, new ResultViewModel<Convidado>("18XCD - Falha interna no servidor"));
             }
         }
 
@@ -112,7 +113,7 @@ namespace Controllers
                 {
                     return NotFound();
                 }
-
+                atualizaConvidado.Confirmacao = model.Confirmacao;
                 atualizaConvidado.Nome = model.Nome;
                 atualizaConvidado.Aniversario = model.Aniversario;
                 atualizaConvidado.Sexo = model.Sexo;
@@ -128,7 +129,7 @@ namespace Controllers
             }
             catch
             {
-                return StatusCode(500, new ResultViewModel<Convidado>("18XCD - Falha Interna no Servidor"));
+                return StatusCode(500, new ResultViewModel<Convidado>("19XCD - Falha Interna no Servidor"));
             }
         }
     }
