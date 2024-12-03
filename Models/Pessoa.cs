@@ -4,7 +4,7 @@ namespace Models.Pessoa
     public abstract class Pessoa
     {
         public string Nome { get; set; }
-        public DateTime Aniversario { get; set; }
+        public string Aniversario { get; set; }
         public Guid Id { get; set; }
         public string Sexo { get; set; }
         public string Familia { get; set; }

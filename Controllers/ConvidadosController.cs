@@ -63,8 +63,9 @@ namespace Controllers
                     Familia = model.Familia,
                     Telefone = model.Telefone,
                     Email = model.Email.ToLower(),
-                    Id = Guid.NewGuid()
+
                 };
+
                 await context.Convidados.AddAsync(convidado);
                 await context.SaveChangesAsync();
                 return Created($"v1/convidados{convidado.Id}", new ResultViewModel<Convidado>(convidado));

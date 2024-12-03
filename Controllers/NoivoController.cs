@@ -65,7 +65,7 @@ namespace Controllers
                     Familia = model.Familia,
                     Telefone = model.Telefone,
                     Email = model.Email.ToLower(),
-                    Id = Guid.NewGuid()
+
                 };
                 await context.Noivos.AddAsync(noivo);
                 await context.SaveChangesAsync();
