@@ -6,8 +6,8 @@ public class EditorPessoaViewModel
     [Required(ErrorMessage = "Nome é obrigatório.")]
     [StringLength(45, MinimumLength = 3, ErrorMessage = "Este campo deve conter entre 3 e 45 caracteres.")]
     public string Nome { get; set; }
-    [Required(ErrorMessage = "Data de Aniversário é obrigatório.")]
-    public DateTime Aniversario { get; set; }
+
+    public string Aniversario { get; set; }
     [Required(ErrorMessage = "Sexo é obrigatório.")]
     public string Sexo { get; set; }
     [Required(ErrorMessage = "Familia é obrigatório.")]

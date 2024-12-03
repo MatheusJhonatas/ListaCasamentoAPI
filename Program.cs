@@ -9,10 +9,11 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.WithOrigins("http://127.0.0.1:5500/")
+                          policy.WithOrigins("http://127.0.0.1:5500/",
+                          "file:///C:/Dev/BiaMatheus/index.html:187:17")
                                 .AllowAnyHeader()
                                 .AllowAnyMethod()
-                                .WithExposedHeaders("A ccess-control-allow-origin");
+                                .WithExposedHeaders("Access-control-allow-origin");
                       });
 });
 builder.Services.AddControllers();
