@@ -131,3 +131,8 @@ C:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\refint\ListaCasamento.d
 C:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\ListaCasamento.pdb
 C:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\ListaCasamento.genruntimeconfig.cache
 C:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\ref\ListaCasamento.dll
+c:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Microsoft.OpenApi.dll
+c:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+c:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+c:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+c:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\ListaCasamento.MvcApplicationPartsAssemblyInfo.cs

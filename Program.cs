@@ -17,7 +17,8 @@ builder.Services.AddCors(options =>
                       });
 });
 builder.Services.AddControllers();
-
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ListaCasamentoDataContext>();
 
 var app = builder.Build();
@@ -32,5 +33,9 @@ app.UseCors(c =>
 app.UseAuthorization();
 
 app.MapControllers();
-
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+};
 app.Run();
