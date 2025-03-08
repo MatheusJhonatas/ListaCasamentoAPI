@@ -28,9 +28,13 @@ C:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Microsoft.IdentityModel
 C:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
 C:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Mono.TextTemplating.dll
+C:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\System.CodeDom.dll
 C:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\System.Composition.AttributedModel.dll
 C:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\System.Composition.Convention.dll
@@ -115,6 +119,7 @@ C:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\ListaCasamento.Generate
 C:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\ListaCasamento.AssemblyInfoInputs.cache
 C:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\ListaCasamento.AssemblyInfo.cs
 C:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\ListaCasamento.csproj.CoreCompileInputs.cache
+C:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\ListaCasamento.MvcApplicationPartsAssemblyInfo.cs
 C:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\ListaCasamento.MvcApplicationPartsAssemblyInfo.cache
 C:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\ListaCasamento.sourcelink.json
 C:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\staticwebassets.build.json
@@ -131,8 +136,3 @@ C:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\refint\ListaCasamento.d
 C:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\ListaCasamento.pdb
 C:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\ListaCasamento.genruntimeconfig.cache
 C:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\ref\ListaCasamento.dll
-c:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Microsoft.OpenApi.dll
-c:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
-c:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-c:\Dev\ListaCasamentoApi\ListaCasamento\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-c:\Dev\ListaCasamentoApi\ListaCasamento\obj\Debug\net8.0\ListaCasamento.MvcApplicationPartsAssemblyInfo.cs
