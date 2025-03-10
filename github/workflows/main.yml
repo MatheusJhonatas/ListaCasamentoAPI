@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  AWS_REGION: us-east-1                 # Região da AWS
+  AWS_REGION: sa-east-1                 # Região da AWS
   ECR_REPOSITORY: nome-da-sua-api       # Nome do seu repositório no ECR
   ECS_SERVICE: nome-do-serviço          # Nome do seu serviço ECS
   ECS_CLUSTER: nome-do-cluster          # Nome do cluster ECS
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do Código
-        uses: actions/checkout@v4
+        uses: actions/checkout@main
 
       - name: Configurar Credenciais AWS
         uses: aws-actions/configure-aws-credentials@v1
@@ -30,6 +30,23 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
+
+      - name: Configurar .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.302' # Substitua pela versão do .NET que você está usando
+
+      - name: Restaurar Dependências
+        run: dotnet restore
+
+      - name: Build da Aplicação
+        run: dotnet build --configuration Release
+
+      - name: Testar a Aplicação
+        run: dotnet test --no-build --verbosity normal
+
+      - name: Empacotar a Aplicação
+        run: dotnet pack --configuration Release --output ./output
 
       - name: Login no Amazon ECR
         id: login-ecr
