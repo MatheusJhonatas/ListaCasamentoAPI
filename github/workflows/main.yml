@@ -7,11 +7,11 @@ on:
 
 env:
   AWS_REGION: sa-east-1                 # Região da AWS
-  ECR_REPOSITORY: nome-da-sua-api       # Nome do seu repositório no ECR
-  ECS_SERVICE: nome-do-serviço          # Nome do seu serviço ECS
-  ECS_CLUSTER: nome-do-cluster          # Nome do cluster ECS
-  ECS_TASK_DEFINITION: .aws/task-definition.json # Caminho da Task Definition
-  CONTAINER_NAME: nome-da-sua-api       # Nome do container na Task Definition
+  ECR_REPOSITORY: lista_casamento       # Nome do seu repositório no ECR
+  ECS_SERVICE: ECS_ListaCasamento          # Nome do seu serviço ECS
+  ECS_CLUSTER: CluesterListaCasamento          # Nome do cluster ECS
+  ECS_TASK_DEFINITION: arn:aws:ecs:sa-east-1:509399615146:task-definition/AuthApiGit:1 # Caminho da Task Definition
+  CONTAINER_NAME: lista_casamento       # Nome do container na Task Definition
 
 permissions:
   contents: read
@@ -27,9 +27,9 @@ jobs:
       - name: Configurar Credenciais AWS
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.AKIAXNGUVI2VP6N3O4FX }}
+          aws-secret-access-key: ${{ secrets.IpzhjhOSe13reAaIIBIWjnsb/AVP/drsrxmTTGow }}
+          aws-region: ${{ env.sa-east-1 }}
 
       - name: Configurar .NET
         uses: actions/setup-dotnet@v1
