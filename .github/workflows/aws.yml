@@ -9,7 +9,7 @@ env:
   AWS_REGION: sa-east-1                   # Região da AWS
   ECR_REPOSITORY: lista_casamento         # Nome do repositório no ECR
   ECS_SERVICE: ECS_ListaCasamento         # Nome do serviço ECS
-  ECS_CLUSTER: CluesterListaCasamento     # Nome do cluster ECS
+  ECS_CLUSTER: ClusterListaCasamento     # Nome do cluster ECS
   ECS_TASK_DEFINITION: .aws/task-definition.json # Caminho da Task Definition no repositório
   CONTAINER_NAME: lista_casamento         # Nome do container na Task Definition
 
