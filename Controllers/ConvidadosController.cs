@@ -63,7 +63,7 @@ namespace Controllers
                     Familia = model.Familia,
                     Telefone = model.Telefone,
                     Email = model.Email.ToLower(),
-                    //Teste do teste do teste
+                    //newtest
                 };
 
                 await context.Convidados.AddAsync(convidado);
