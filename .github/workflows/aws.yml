@@ -3,7 +3,7 @@ name: Deploy API to AWS ECS
 on:
   push:
     branches:
-      - develop
+      - main
 
 env:
   AWS_REGION: sa-east-1                   # Região da AWS
