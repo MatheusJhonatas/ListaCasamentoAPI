@@ -6,12 +6,12 @@ on:
       - main
 
 env:
-  AWS_REGION: sa-east-1                 # Região da AWS
-  ECR_REPOSITORY: lista_casamento       # Nome do seu repositório no ECR
-  ECS_SERVICE: ECS_ListaCasamento          # Nome do seu serviço ECS
-  ECS_CLUSTER: CluesterListaCasamento          # Nome do cluster ECS
-  ECS_TASK_DEFINITION: arn:aws:ecs:sa-east-1:509399615146:task-definition/AuthApiGit:1 # Caminho da Task Definition
-  CONTAINER_NAME: lista_casamento       # Nome do container na Task Definition
+  AWS_REGION: sa-east-1                   # Região da AWS
+  ECR_REPOSITORY: lista_casamento         # Nome do repositório no ECR
+  ECS_SERVICE: ECS_ListaCasamento         # Nome do serviço ECS
+  ECS_CLUSTER: CluesterListaCasamento     # Nome do cluster ECS
+  ECS_TASK_DEFINITION: .aws/task-definition.json # Caminho da Task Definition no repositório
+  CONTAINER_NAME: lista_casamento         # Nome do container na Task Definition
 
 permissions:
   contents: read
@@ -22,19 +22,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do Código
-        uses: actions/checkout@main
+        uses: actions/checkout@v4
 
       - name: Configurar Credenciais AWS
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.IAWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.sa-east-1 }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Configurar .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '8.0.302' # Substitua pela versão do .NET que você está usando
+          dotnet-version: '8.0.302'
 
       - name: Restaurar Dependências
         run: dotnet restore
@@ -61,6 +61,14 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+      - name: Atualizar Task Definition JSON
+        run: |
+          sed -i 's#IMAGE_PLACEHOLDER#${{ steps.build-image.outputs.image }}#g' .aws/task-definition.json
+
+      - name: Registrar Nova Task Definition
+        run: |
+          aws ecs register-task-definition --cli-input-json file://.aws/task-definition.json
 
       - name: Atualizar a Task Definition com a Nova Imagem
         id: task-def
