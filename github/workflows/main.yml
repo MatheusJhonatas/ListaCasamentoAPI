@@ -27,8 +27,8 @@ jobs:
       - name: Configurar Credenciais AWS
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AKIAXNGUVI2VP6N3O4FX }}
-          aws-secret-access-key: ${{ secrets.IpzhjhOSe13reAaIIBIWjnsb/AVP/drsrxmTTGow }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.IAWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.sa-east-1 }}
 
       - name: Configurar .NET
