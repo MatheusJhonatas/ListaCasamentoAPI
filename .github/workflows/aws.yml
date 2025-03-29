@@ -1,87 +1,87 @@
-name: Deploy API to AWS ECS
+# name: Deploy API to AWS ECS
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
-env:
-  AWS_REGION: sa-east-1                   # Região da AWS
-  ECR_REPOSITORY: lista_casamento         # Nome do repositório no ECR
-  ECS_SERVICE: ECS_ListaCasamento         # Nome do serviço ECS
-  ECS_CLUSTER: ClusterListaCasamento     # Nome do cluster ECS
-  ECS_TASK_DEFINITION: .aws/task-definition.json # Caminho da Task Definition no repositório
-  CONTAINER_NAME: lista_casamento         # Nome do container na Task Definition
+# env:
+#   AWS_REGION: sa-east-1                   # Região da AWS
+#   ECR_REPOSITORY: lista_casamento         # Nome do repositório no ECR
+#   ECS_SERVICE: ECS_ListaCasamento         # Nome do serviço ECS
+#   ECS_CLUSTER: ClusterListaCasamento     # Nome do cluster ECS
+#   ECS_TASK_DEFINITION: .aws/task-definition.json # Caminho da Task Definition no repositório
+#   CONTAINER_NAME: lista_casamento         # Nome do container na Task Definition
 
-permissions:
-  contents: read
+# permissions:
+#   contents: read
 
-jobs:
-  deploy:
-    name: Build and Deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout do Código
-        uses: actions/checkout@v4
+# jobs:
+#   deploy:
+#     name: Build and Deploy
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout do Código
+#         uses: actions/checkout@v4
 
-      - name: Configurar Credenciais AWS
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: sa-east-1
+#       - name: Configurar Credenciais AWS
+#         uses: aws-actions/configure-aws-credentials@v1
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws-region: sa-east-1
 
-      - name: Configurar .NET
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '8.0.302'
+#       - name: Configurar .NET
+#         uses: actions/setup-dotnet@v1
+#         with:
+#           dotnet-version: '8.0.302'
 
-      - name: Restaurar Dependências
-        run: dotnet restore
+#       - name: Restaurar Dependências
+#         run: dotnet restore
 
-      - name: Build da Aplicação
-        run: dotnet build --configuration Release
+#       - name: Build da Aplicação
+#         run: dotnet build --configuration Release
 
-      - name: Testar a Aplicação
-        run: dotnet test --no-build --verbosity normal
+#       - name: Testar a Aplicação
+#         run: dotnet test --no-build --verbosity normal
 
-      - name: Empacotar a Aplicação
-        run: dotnet pack --configuration Release --output ./output
+#       - name: Empacotar a Aplicação
+#         run: dotnet pack --configuration Release --output ./output
 
-      - name: Login no Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+#       - name: Login no Amazon ECR
+#         id: login-ecr
+#         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build, Tag e Push da Imagem Docker
-        id: build-image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+#       - name: Build, Tag e Push da Imagem Docker
+#         id: build-image
+#         env:
+#           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+#           IMAGE_TAG: ${{ github.sha }}
+#         run: |
+#           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+#           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+#           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
-      - name: Atualizar Task Definition JSON
-        run: |
-          sed -i 's#IMAGE_PLACEHOLDER#${{ steps.build-image.outputs.image }}#g' .aws/task-definition.json
+#       - name: Atualizar Task Definition JSON
+#         run: |
+#           sed -i 's#IMAGE_PLACEHOLDER#${{ steps.build-image.outputs.image }}#g' .aws/task-definition.json
 
-      - name: Registrar Nova Task Definition
-        run: |
-          aws ecs register-task-definition --cli-input-json file://.aws/task-definition.json
+#       - name: Registrar Nova Task Definition
+#         run: |
+#           aws ecs register-task-definition --cli-input-json file://.aws/task-definition.json
 
-      - name: Atualizar a Task Definition com a Nova Imagem
-        id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        with:
-          task-definition: ${{ env.ECS_TASK_DEFINITION }}
-          container-name: ${{ env.CONTAINER_NAME }}
-          image: ${{ steps.build-image.outputs.image }}
+#       - name: Atualizar a Task Definition com a Nova Imagem
+#         id: task-def
+#         uses: aws-actions/amazon-ecs-render-task-definition@v1
+#         with:
+#           task-definition: ${{ env.ECS_TASK_DEFINITION }}
+#           container-name: ${{ env.CONTAINER_NAME }}
+#           image: ${{ steps.build-image.outputs.image }}
 
-      - name: Deploy para o ECS
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ env.ECS_SERVICE }}
-          cluster: ${{ env.ECS_CLUSTER }}
-          wait-for-service-stability: true
+#       - name: Deploy para o ECS
+#         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+#         with:
+#           task-definition: ${{ steps.task-def.outputs.task-definition }}
+#           service: ${{ env.ECS_SERVICE }}
+#           cluster: ${{ env.ECS_CLUSTER }}
+#           wait-for-service-stability: true
